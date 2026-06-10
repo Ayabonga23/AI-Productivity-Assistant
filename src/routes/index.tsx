@@ -1,11 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Shell, type ViewKey } from "@/components/aura/Shell";
+import { Dashboard as DashboardView } from "@/components/aura/Dashboard";
 import { EmailGenerator } from "@/components/aura/EmailGenerator";
 import { NotesSummarizer } from "@/components/aura/NotesSummarizer";
 import { TaskPlanner } from "@/components/aura/TaskPlanner";
 import { ResearchAssistant } from "@/components/aura/ResearchAssistant";
 import { Chatbot } from "@/components/aura/Chatbot";
+import { ResponsibleAI } from "@/components/aura/ResponsibleAI";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,18 +25,20 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
-  component: Dashboard,
+  component: DashboardPage,
 });
 
-function Dashboard() {
-  const [active, setActive] = useState<ViewKey>("email");
+function DashboardPage() {
+  const [active, setActive] = useState<ViewKey>("dashboard");
   return (
     <Shell active={active} setActive={setActive}>
+      {active === "dashboard" && <DashboardView onNavigate={setActive} />}
       {active === "email" && <EmailGenerator />}
       {active === "notes" && <NotesSummarizer />}
       {active === "planner" && <TaskPlanner />}
       {active === "research" && <ResearchAssistant />}
       {active === "chat" && <Chatbot />}
+      {active === "responsible" && <ResponsibleAI />}
     </Shell>
   );
 }

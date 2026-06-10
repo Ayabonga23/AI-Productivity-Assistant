@@ -1,15 +1,17 @@
 import { useState, type ReactNode } from "react";
-import { Mail, NotebookPen, CalendarRange, Sparkles, MessageSquare, Menu, X, Zap } from "lucide-react";
+import { LayoutDashboard, Mail, NotebookPen, CalendarRange, Sparkles, MessageSquare, Menu, ShieldCheck, X, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export type ViewKey = "email" | "notes" | "planner" | "research" | "chat";
+export type ViewKey = "dashboard" | "email" | "notes" | "planner" | "research" | "chat" | "responsible";
 
 const NAV: { key: ViewKey; label: string; icon: typeof Mail; desc: string }[] = [
+  { key: "dashboard", label: "Dashboard", icon: LayoutDashboard, desc: "Workspace overview" },
   { key: "email", label: "Email Generator", icon: Mail, desc: "Craft polished emails" },
   { key: "notes", label: "Notes Summarizer", icon: NotebookPen, desc: "Distill meeting notes" },
   { key: "planner", label: "Task Planner", icon: CalendarRange, desc: "Plan your week" },
   { key: "research", label: "Research Assistant", icon: Sparkles, desc: "Topic deep-dives" },
   { key: "chat", label: "Workplace Chat", icon: MessageSquare, desc: "Conversational AI" },
+  { key: "responsible", label: "Responsible AI", icon: ShieldCheck, desc: "Principles & disclaimer" },
 ];
 
 export function Shell({
